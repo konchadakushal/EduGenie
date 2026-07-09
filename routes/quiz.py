@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from models.request_models import QuizRequest
 from services.gemini_service import generate_response
+from models.response_models import ApiResponse
 
 router = APIRouter()
 
@@ -9,7 +10,7 @@ def generate_quiz(request: QuizRequest):
 
     prompt = f"""
     Generate {request.number_of_questions} MCQs on:
-
+    in 200 words
     {request.query}
 
     Rules:
@@ -18,7 +19,7 @@ def generate_quiz(request: QuizRequest):
     - Medium difficulty
     """
 
-    quiz = generate_response(prompt)
+    answer = generate_response(prompt)
 
     return ApiResponse(
     success=True,

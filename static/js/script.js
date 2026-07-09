@@ -60,11 +60,17 @@ async function submitTask() {
 
         if(data.success){
 
-            document.getElementById("result").innerHTML = `
-                <h2>${data.task}</h2>
-                <hr>
-                <pre>${data.output}</pre>
-            `;
+           document.getElementById("result").innerHTML = `
+<h2 style="color:#2563eb">${data.task}</h2>
+
+<hr style="margin:15px 0">
+
+<div class="answer">
+
+${data.output.replace(/\n/g,"<br>")}
+
+</div>
+`;
 
         }else{
 

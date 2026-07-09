@@ -13,7 +13,7 @@ def question_answer(request: QuestionRequest):
     You are EduGenie.
 
     Answer the following question:
-
+    in 200 words
     {request.query}
 
     Include:
