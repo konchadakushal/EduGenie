@@ -1,29 +1,32 @@
 from fastapi import APIRouter
 from models.request_models import QuestionRequest
+from models.response_models import ApiResponse
 from services.gemini_service import generate_response
 
 router = APIRouter()
 
-@router.post("/")
+
+@router.post("/", response_model=ApiResponse)
 def question_answer(request: QuestionRequest):
 
     prompt = f"""
-You are EduGenie, an AI Educational Assistant.
+    You are EduGenie.
 
-Answer the following question in a simple and beginner-friendly way.
+    Answer the following question:
 
-Question:
-{request.question}
+    {request.query}
 
-Give:
-1. Definition
-2. Explanation
-3. Example
-"""
+    Include:
+    - Definition
+    - Explanation
+    - Example
+    """
 
     answer = generate_response(prompt)
 
-    return {
-        "question": request.question,
-        "answer": answer
-    }
+    return ApiResponse(
+        success=True,
+        task="Question Answering",
+        input=request.query,
+        output=answer
+    )

@@ -1,22 +1,17 @@
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 
 class QuestionRequest(BaseModel):
-    question: str
-
+    query: str = Field(..., min_length=3)
 
 class ExplainRequest(BaseModel):
-    topic: str
-
-
-class QuizRequest(BaseModel):
-    topic: str
-    number_of_questions: int = 5
-
+    query: str = Field(..., min_length=3)
 
 class SummaryRequest(BaseModel):
-    text: str
-
+    query: str = Field(..., min_length=10)
 
 class RecommendationRequest(BaseModel):
-    current_topic: str
+    query: str = Field(..., min_length=3)
+
+class QuizRequest(BaseModel):
+    query: str = Field(..., min_length=3)
+    number_of_questions: int = Field(default=5, ge=1, le=20)

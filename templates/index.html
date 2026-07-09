@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>🎓 EduGenie</h1>
+    <p>AI-Powered Educational Assistant</p>
+
+    <textarea
+        id="query"
+        placeholder="Enter your question or text..."
+        rows="8">
+    </textarea>
+
+    <select id="task">
+        <option value="qa">Question Answering</option>
+        <option value="explain">Concept Explanation</option>
+        <option value="quiz">Quiz Generation</option>
+        <option value="summarize">Text Summarization</option>
+        <option value="learn">Learning Recommendation</option>
+    </select>
+
+    <button onclick="submitTask()">
+        Submit
+    </button>
+
+    <div id="loading"></div>
+
+    <div id="result"></div>
+
+</div>
+
+<script src="{{ url_for('static', path='js/script.js') }}"></script>
+
+{% endblock %}
